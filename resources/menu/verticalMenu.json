@@ -15,14 +15,9 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "tables/datatables-basic",
-          "name": "Basic",
-          "slug": "tables-datatables-basic"
-        },
-        {
-          "url": "tables/datatables-basic",
-          "name": "Basic",
-          "slug": "tables-datatables-basic"
+          "url": "/kho",
+          "name": "Advance",
+          "slug": "tables-datatables-advanced"
         }
       ]
     },

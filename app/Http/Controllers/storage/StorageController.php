@@ -5,6 +5,7 @@ namespace App\Http\Controllers\storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Storage;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class StorageController extends Controller
 {
@@ -17,7 +18,41 @@ class StorageController extends Controller
     {
         $user_id = $request->user()->id;
         $infos = Storage::where('user_id', $user_id)->get();
-        return view('content.tables.tables-basic', ['infos' => $infos]);
+        return view('content.tables.tables-datatables-advanced', compact('infos', 'user_id'));
+    }
+
+    public function getStorageByUserId($user_id) {
+        $storage = Storage::where('user_id', $user_id)->orderBy('ma_hinh')->get();
+        if($storage) {
+            return response()->json(['data' => $storage], 200);
+        } else {
+            return response()->json(['error' => 'Storage not found'], 404);
+        }
+    }
+
+    public function excelsave(Request $request){
+        $user_id = $request->user()->id;
+        $file = $request->file('excelfile');
+        $inputFileType = IOFactory::identify($file);
+        $reader  = IOFactory::createReader($inputFileType);
+        $spreadsheet = $reader->load($file);
+        $worksheet = $spreadsheet->getSheetByName('sheet');
+        $data = $worksheet->toArray();
+        foreach (array_slice($data, 1) as $row){
+            try {
+                $storage = new Storage;
+                $storage->user_id = $user_id;
+                $storage->ma_hinh = $row[0];
+                $storage->dong_may = $row[1];
+                $storage->note = $row[2];
+                $storage->save();
+            } catch (\Exception $e) {
+                // Xử lý ngoại lệ khi thiếu thông tin
+                return;
+            }
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -38,7 +73,14 @@ class StorageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = $request->user()->id;
+        $kho = new Storage;
+        $kho->user_id = $user_id;
+        $kho->ma_hinh = $request->ma_hinh;
+        $kho->dong_may = $request->dong_may;
+        $kho->note = $request->note;
+        $kho->save();
+        return redirect()->back()->with('success', 'Info saved successfully.');
     }
 
     /**

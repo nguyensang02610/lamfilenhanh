@@ -35,8 +35,8 @@ if (document.getElementById('layout-menu')) {
       showDropdownOnHover: localStorage.getItem('templateCustomizer-' + templateName + '--ShowDropdownOnHover') // If value(showDropdownOnHover) is set in local storage
         ? localStorage.getItem('templateCustomizer-' + templateName + '--ShowDropdownOnHover') === 'true' // Use the local storage value
         : window.templateCustomizer !== undefined // If value is set in config.js
-        ? window.templateCustomizer.settings.defaultShowDropdownOnHover // Use the config.js value
-        : true // Use this if you are not using the config.js and want to set value directly from here
+          ? window.templateCustomizer.settings.defaultShowDropdownOnHover // Use the config.js value
+          : true // Use this if you are not using the config.js and want to set value directly from here
     });
     // Change parameter to true if you want scroll animation
     window.Helpers.scrollToActive((animate = false));
@@ -56,7 +56,7 @@ if (document.getElementById('layout-menu')) {
             'templateCustomizer-' + templateName + '--LayoutCollapsed',
             String(window.Helpers.isCollapsed())
           );
-        } catch (e) {}
+        } catch (e) { }
       }
     });
   });
@@ -106,7 +106,7 @@ if (document.getElementById('layout-menu')) {
       if (styleSwitcherToggleEl) {
         styleSwitcherToggleEl.querySelector('i').classList.add('ti-moon-stars');
         new bootstrap.Tooltip(styleSwitcherToggleEl, {
-          title: 'Dark mode',
+          title: 'Chế độ tối',
           fallbackPlacements: ['bottom']
         });
       }
@@ -115,7 +115,7 @@ if (document.getElementById('layout-menu')) {
       if (styleSwitcherToggleEl) {
         styleSwitcherToggleEl.querySelector('i').classList.add('ti-sun');
         new bootstrap.Tooltip(styleSwitcherToggleEl, {
-          title: 'Light mode',
+          title: 'Chế độ sáng',
           fallbackPlacements: ['bottom']
         });
       }
@@ -288,7 +288,7 @@ if (document.getElementById('layout-menu')) {
             localStorage.getItem('templateCustomizer-' + templateName + '--LayoutCollapsed') === 'true',
             false
           );
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 })();
