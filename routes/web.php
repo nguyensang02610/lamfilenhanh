@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\laravel_example\UserManagement;
 
 
@@ -16,9 +17,30 @@ use App\Http\Controllers\laravel_example\UserManagement;
 */
 
 $controller_path = 'App\Http\Controllers';
+//Login route
+Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('user-login');
+Route::post('/auth/login-basic', $controller_path . '\authentications\LoginBasic@loginSubmit')->name('login-submit');
+Route::post('auth/logout', $controller_path. '\authentications\LoginBasic@logout')->name('user-logout');
+//Login admin 
+Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
+
+//User Route
+Route::group(['prefix' => '/', 'middleware' => 'user'], function() use ($controller_path){
+    Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+    Route::post('/info-save', $controller_path . '\info\InfoController@store')->name('info-save');
+    Route::post('/excel-upload', $controller_path . '\createfile\CreateFileController@excel')->name('excel-upload');
+
+    Route::get('/kho', $controller_path . '\storage\StorageController@index');
+    Route::post('/kho-save', $controller_path . '\storage\StorageController@store');
+});
+
+//Admin Route
+Route::group(['prefix' => '/admin', 'middleware' => ['auth','admin']] , function() use ($controller_path){
+    Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('admin-dashboard');
+});
 
 // Main Page Route
-Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+// Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
 Route::get('/dashboard/analytics', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
 Route::get('/dashboard/crm', $controller_path . '\dashboard\Crm@index')->name('dashboard-crm');
 Route::get('/dashboard/ecommerce', $controller_path . '\dashboard\Ecommerce@index')->name('dashboard-ecommerce');
@@ -32,8 +54,6 @@ Route::get('/layouts/content-navbar', $controller_path . '\layouts\ContentNavbar
 Route::get('/layouts/content-nav-sidebar', $controller_path . '\layouts\ContentNavSidebar@index')->name('layouts-content-nav-sidebar');
 Route::get('/layouts/navbar-full', $controller_path . '\layouts\NavbarFull@index')->name('layouts-navbar-full');
 Route::get('/layouts/navbar-full-sidebar', $controller_path . '\layouts\NavbarFullSidebar@index')->name('layouts-navbar-full-sidebar');
-Route::get('/layouts/horizontal', $controller_path . '\layouts\Horizontal@index')->name('dashboard-analytics');
-Route::get('/layouts/vertical', $controller_path . '\layouts\Vertical@index')->name('dashboard-analytics');
 Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', $controller_path . '\layouts\WithoutNavbar@index')->name('layouts-without-navbar');
 Route::get('/layouts/fluid', $controller_path . '\layouts\Fluid@index')->name('layouts-fluid');
@@ -81,9 +101,7 @@ Route::get('/pages/misc-comingsoon', $controller_path . '\pages\MiscComingSoon@i
 Route::get('/pages/misc-not-authorized', $controller_path . '\pages\MiscNotAuthorized@index')->name('pages-misc-not-authorized');
 
 // authentication
-Route::get('/auth/login-front', $controller_path . '\authentications\LoginFront@index')->name('auth-login-front');
-Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
-Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
+
 Route::get('/auth/register-front', $controller_path . '\authentications\RegisterFront@index')->name('auth-register-front');
 Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name('auth-register-basic');
 Route::get('/auth/register-cover', $controller_path . '\authentications\RegisterCover@index')->name('auth-register-cover');
