@@ -4,13 +4,14 @@ namespace App\Http\Controllers\createfile;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Infos;
 use Illuminate\Support\FacadesFile;
 use Carbon\Carbon;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use RealRashid\SweetAlert\Facades\Alert;
-// use File;
 use Illuminate\Support\Facades\File;
+
+use App\Models\Infos;
+use App\Models\Storage;
 
 class CreateFileController extends Controller
 {
@@ -128,8 +129,9 @@ class CreateFileController extends Controller
     }
 
     public function excel(Request $request){
+        $user_id = $request->user()->id;
         $files = $request->file('excel');
-        $info = Infos::where('user_id', $request->user()->id)->first();
+        $info = Infos::where('user_id', $user_id)->first();
 
         $sourcefolder = $info->sourcefolder;
         $exportfolder = $info->exportfolder;
@@ -166,8 +168,26 @@ class CreateFileController extends Controller
                         $dong_may = str_replace("/", "-", $dong_may);
                         $dong_may = strtoupper($dong_may);
                         // dd($dong_may, $ma_hinh, $sourcefolder, $exportfolder);
-                        for ($i = 0; $i < intval($quantity); $i++) {
-                            $this->create_file($dong_may, $ma_hinh, $sourcefolder, $exportfolder);
+
+                        $check_kho = Storage::where('user_id', $user_id)
+                                            ->where('ma_hinh', $ma_hinh)
+                                            ->where('dong_may', 'LIKE', '%' . str_replace(['-'], '%', $dong_may) . '%')
+                                            ->get();
+                        
+                        if ($check_kho->count() > 0) { //Nếu phát hiện ra đã có hàng tồn
+                            foreach ($check_kho as $item){
+                                
+                            }
+                        } else {
+                            if ($quantity > 1){
+                                for ($i = 0; $i < intval($quantity); $i++) {
+                                    $this->create_file($dong_may, $ma_hinh, $sourcefolder, $exportfolder);
+                                }
+                            }
+                            else{
+                                $this->create_file($dong_may, $ma_hinh, $sourcefolder, $exportfolder);
+                            }
+                            
                         }
                     }
                     
