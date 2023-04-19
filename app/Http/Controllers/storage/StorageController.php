@@ -118,6 +118,8 @@ class StorageController extends Controller
         $kho->dong_may = $request->dong_may;
         $kho->note = $request->note;
         $kho->save();
+
+
         // return redirect()->back();
     }
 

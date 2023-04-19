@@ -104,8 +104,9 @@ $(function () {
         });
     });
 
-    $(document).on('click', '.item-edit', function () {
+    $('.dt-column-search').on('click', '.item-edit', function () {
         // Lấy dữ liệu từ dòng đó
+        var id = $(this).data('id');
         var row = $(this).closest('tr');
         var ma_hinh = row.find('td:eq(0)').text();
         var dong_may = row.find('td:eq(1)').text();
@@ -115,6 +116,7 @@ $(function () {
         $('#modalCenter1').find('input[name="ma_hinh"]').val(ma_hinh);
         $('#modalCenter1').find('input[name="dong_may"]').val(dong_may);
         $('#modalCenter1').find('input[name="note"]').val(note);
+        $('#modalCenter1').find('input[name="storage_id"]').val(id);
 
         // Hiển thị modals
         $('#modalCenter1').modal('show');
@@ -122,56 +124,34 @@ $(function () {
 
     //Sửa bản ghi
     // Khi người dùng nhấn nút "Lưu" trong modal
-    $('#modalCenter1 form').submit(function (event) {
-        // Ngăn chặn hành động mặc định của form (submit)
-        event.preventDefault();
+    // Sử dụng jQuery để thực hiện submit form và gọi ajax api update
+    $('#editStorageForm').submit(function (event) {
+        event.preventDefault(); // Ngăn chặn trình duyệt submit form
 
-        // Lấy giá trị từ các ô input
         var maHinh = $('#modalCenter1 input[name="ma_hinh"]').val();
         var dongMay = $('#modalCenter1 input[name="dong_may"]').val();
         var note = $('#modalCenter1 input[name="note"]').val();
+        var id = $('#modalCenter1 input[name="storage_id"]').val();
 
-        // Lấy ID của bản ghi để cập nhật
-        var recordId = $('#modalCenter1').data('record-id');
-
-        // Gửi AJAX request để cập nhật bản ghi
+        // Gọi ajax để gửi dữ liệu lên server
         $.ajax({
-            url: '/kho/' + recordId,
-            type: 'PUT',
+            url: 'kho-update/' + id,
+            type: 'POST',
             data: {
                 ma_hinh: maHinh,
                 dong_may: dongMay,
                 note: note
             },
             success: function (response) {
-                // Nếu request thành công, hiển thị sweetalert thông báo
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Cập nhật bản ghi thành công',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-
-                // Ẩn modal
-                $('#modalCenter1').removeClass('show');
-                $('.modal-backdrop').remove();
-
-                // Tải lại trang để hiển thị bản ghi mới cập nhật
-                location.reload();
+                // xử lý kết quả trả về từ server
+                dt_filter.ajax.reload();
+                $('#modalCenter1').modal('hide');
             },
-            error: function (xhr) {
-                // Nếu request thất bại, hiển thị sweetalert thông báo lỗi
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Lỗi',
-                    text: 'Có lỗi xảy ra khi cập nhật bản ghi',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
             }
-        });
+        })
     });
-
 
 
 

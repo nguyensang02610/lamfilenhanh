@@ -148,6 +148,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row g-2">
+
                             <div class="col mb-0">
                                 <label for="emailBasic" class="form-label">Mã hình</label>
                                 <input name="ma_hinh" type="text" id="emailBasic" class="form-control">
@@ -164,6 +165,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="storage_id">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Đóng</button>
                         <button type="submit" class="btn btn-primary">Lưu</button>
