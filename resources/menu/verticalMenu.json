@@ -43,10 +43,10 @@
       "slug": "kho"
     },
     {
-      "url": "https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/laravel-introduction.html",
+      "url": "/replace-phone",
       "icon": "menu-icon tf-icons ti ti-file-description",
       "name": "Thay thế dòng máy",
-      "slug": "documentation"
+      "slug": "replace-phone"
     }
   ]
 }

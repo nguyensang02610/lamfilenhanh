@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('infos', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
-            $table->unsignedBigInteger('lansudung');
-            $table->string('sourcefolder');
-            $table->string('exportfolder');
-            $table->string('exportname');
+            $table->unsignedBigInteger('create_file_id');
+            $table->foreign('create_file_id')->references('id')->on('create_file_history')->onDelete('CASCADE');
+            $table->string('content');
+            $table->string('zone')->default('success');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('info');
+        Schema::dropIfExists('notifications');
     }
 };

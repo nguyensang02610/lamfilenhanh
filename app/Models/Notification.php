@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PhoneReplace extends Model
+class Notification extends Model
 {
-    protected $fillable=['user_id','dong_may', 'dong_may_thay', 'note'];
+    protected $fillable=['user_id','create_file_id', 'content', 'zone'];
 
     public function user()
     {

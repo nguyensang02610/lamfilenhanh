@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\File;
 
 use App\Models\Infos;
 use App\Models\Storage;
+use App\Models\CreateFileHistory;
+use App\Models\Notification;
+use App\Models\PhoneReplace;
 
 class CreateFileController extends Controller
 {
@@ -133,6 +136,13 @@ class CreateFileController extends Controller
         $files = $request->file('excel');
         $info = Infos::where('user_id', $user_id)->first();
 
+        $history = new CreateFileHistory;
+        $history->user_id = $user_id;
+        $history->save();
+        $log_id = $history->id;
+
+
+
         $sourcefolder = $info->sourcefolder;
         $exportfolder = $info->exportfolder;
         $exportname = $info->exportname;
@@ -173,8 +183,18 @@ class CreateFileController extends Controller
                                             ->where('ma_hinh', $ma_hinh)
                                             ->where('dong_may', 'LIKE', '%' . str_replace(['-'], '%', $dong_may) . '%')
                                             ->get();
-                        
-                        if ($check_kho->count() > 0) { //Nếu phát hiện ra đã có hàng tồn
+                        dd($check_kho);
+                        if ($check_kho->count() > 0) {//Nếu phát hiện ra đã có hàng tồn
+                            if ($quantity == 1 && $check_kho->count() == 1){
+                                //Thực hiện ko làm file nữa chuyển sang row mới, tạo thông báo, xóa tồn kho
+                                dd($check_kho[0]->id);
+                                Storage::destroy($check_kho[0]->id);
+                                $notification = new Notification;
+                                $notification->user_id = $user_id;
+                                $notification->create_file_id = $log_id;
+                                $notification->content = "Tìm thấy : -".$dong_may."- và --".$ma_hinh."--";
+                            }
+
                             foreach ($check_kho as $item){
                                 
                             }

@@ -29,16 +29,26 @@ Route::group(['prefix' => '/', 'middleware' => 'user'], function() use ($control
     Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
     Route::post('/info-save', $controller_path . '\info\InfoController@store')->name('info-save');
     Route::post('/excel-upload', $controller_path . '\createfile\CreateFileController@excel')->name('excel-upload');
-
+    //Tồn kho
     Route::get('/kho', $controller_path . '\storage\StorageController@index')->name('kho');
     Route::post('/kho-save', $controller_path . '\storage\StorageController@store')->name('kho-save');
     Route::post('/kho-excel', $controller_path . '\storage\StorageController@excelsave')->name('kho-excel');
-
     Route::get('/api/storage/{user_id}',$controller_path . '\storage\StorageController@getStorageByUserId');
+
+    //Thay thế dòng máy
+    Route::resource('/replace-phone', $controller_path . '\phonereplace\PhoneReplaceController');
+
+    Route::post('/replace-phone-excel', $controller_path . '\phonereplace\PhoneReplaceController@excelsave')->name('phone-excel');
+    Route::get('/api/replace-phone/{user_id}',$controller_path . '\phonereplace\PhoneReplaceController@showid');
 
 
     Route::get('/download', function () {
         $file_path = public_path('assets/excel/upload excel.xlsx');
+        return response()->download($file_path);
+    });
+
+    Route::get('/download-phone', function () {
+        $file_path = public_path('assets/excel/thay dong may.xlsx');
         return response()->download($file_path);
     });
 });
