@@ -13,4 +13,9 @@ class CreateFileHistory extends Model
     {
         return $this->belongsTo('App\Models\User', 'user_id');
     }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Models\Notification', 'create_file_id');
+    }
 }
