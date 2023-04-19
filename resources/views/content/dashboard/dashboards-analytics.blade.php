@@ -70,13 +70,37 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between pb-0">
                     <div class="card-title mb-0">
-                        <h5 class="mb-0">Thông báo</h5>
+                        <h5 class="mb-0">Thông tin tài khoản</h5>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 col-sm-4 col-md-12 col-lg-4">
-
+                    <div class="info-container">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <span class="fw-semibold me-1">Username:</span>
+                                <span>violet.dev</span>
+                            </li>
+                            <li class="mb-2 pt-1">
+                                <span class="fw-semibold me-1">Email:</span>
+                                <span>vafgot@vultukir.org</span>
+                            </li>
+                            <li class="mb-2 pt-1">
+                                <span class="fw-semibold me-1">Status:</span>
+                                <span class="badge bg-label-success">Active</span>
+                            </li>
+                            <li class="mb-2 pt-1">
+                                <span class="fw-semibold me-1">Role:</span>
+                                <span>Author</span>
+                            </li>
+                            <li class="mb-2 pt-1">
+                                <span class="fw-semibold me-1">Tax id:</span>
+                                <span>Tax-8965</span>
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-center">
+                            <a href="javascript:;" class="btn btn-primary me-3" data-bs-target="#editUser"
+                                data-bs-toggle="modal">Edit</a>
+                            <a href="javascript:;" class="btn btn-label-danger suspend-user">Suspended</a>
                         </div>
                     </div>
                 </div>
@@ -85,7 +109,7 @@
         <!--/ Support Tracker -->
 
         <!-- Sales By Country -->
-        <div class="col-xl-8 col-md-6 mb-4">
+        <div class="col-xl-12 col-md-12 mb-4">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title mb-0">
@@ -115,7 +139,6 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-
                             <div class="tab-pane fade active show" id="navs-pills-justified-home" role="tabpanel">
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('excel-upload') }}"
@@ -146,63 +169,12 @@
         </div>
         <!--/ Sales By Country -->
 
-        <!-- Total Earning -->
-        <div class="col-12 col-xl-4 mb-4 col-md-6">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between pb-1">
-                    <h5 class="mb-0 card-title">Total Earning</h5>
-                    <div class="dropdown">
-                        <button class="btn p-0" type="button" id="totalEarning" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="ti ti-dots-vertical ti-sm text-muted"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="totalEarning">
-                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <h1 class="mb-0 me-2">87%</h1>
-                        <i class="ti ti-chevron-up text-success me-1"></i>
-                        <p class="text-success mb-0">25.8%</p>
-                    </div>
-                    <div id="totalEarningChart"></div>
-                    <div class="d-flex align-items-start my-4">
-                        <div class="badge rounded bg-label-primary p-2 me-3 rounded"><i
-                                class="ti ti-currency-dollar ti-sm"></i></div>
-                        <div class="d-flex justify-content-between w-100 gap-2 align-items-center">
-                            <div class="me-2">
-                                <h6 class="mb-0">Total Sales</h6>
-                                <small class="text-muted">Refund</small>
-                            </div>
-                            <p class="mb-0 text-success">+$98</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start">
-                        <div class="badge rounded bg-label-secondary p-2 me-3 rounded"><i
-                                class="ti ti-brand-paypal ti-sm"></i></div>
-                        <div class="d-flex justify-content-between w-100 gap-2 align-items-center">
-                            <div class="me-2">
-                                <h6 class="mb-0">Total Revenue</h6>
-                                <small class="text-muted">Client Payment</small>
-                            </div>
-                            <p class="mb-0 text-success">+$126</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ Total Earning -->
-
         <!-- Monthly Campaign State -->
-        <div class="col-xl-4 col-md-6 mb-4">
+        <div class="col-xl-12 col-md-12 mb-4">
             <div class="card h-100">
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title mb-0">
-                        <h5 class="mb-0">Monthly Campaign State</h5>
-                        <small class="text-muted">8.52k Social Visiters</small>
+                        <h5 class="mb-0">Log làm file</h5>
                     </div>
                     <div class="dropdown">
                         <button class="btn p-0" type="button" id="MonthlyCampaign" data-bs-toggle="dropdown"
@@ -210,204 +182,56 @@
                             <i class="ti ti-dots-vertical ti-sm text-muted"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="MonthlyCampaign">
-                            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Download</a>
-                            <a class="dropdown-item" href="javascript:void(0);">View All</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Tải lại</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Xem tất cả</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <ul class="p-0 m-0">
-                        <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
-                            <div class="badge bg-label-success rounded p-2"><i class="ti ti-mail ti-sm"></i></div>
-                            <div class="d-flex justify-content-between w-100 flex-wrap">
-                                <h6 class="mb-0 ms-3">Emails</h6>
-                                <div class="d-flex">
-                                    <p class="mb-0 fw-semibold">12,346</p>
-                                    <p class="ms-3 text-success mb-0">0.3%</p>
+                    <div class="accordion mt-3" id="accordionExample">
+                        @if (count($history) > 0)
+                            @foreach ($history as $i => $item)
+                                <div class="card mb-3 accordion-item {{ $i === 0 ? ' active' : '' }} ">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button type="button" class="accordion-button" data-bs-toggle="collapse"
+                                            data-bs-target="#accordion{{ $item->id }}" aria-expanded="true"
+                                            aria-controls="accordion{{ $item->id }}">
+                                            Log làm file #{{ $item->id }} - vào
+                                            {{ $item->created_at->format('H:i - d/m/Y') }}
+                                        </button>
+                                    </h2>
+                                    <div id="accordion{{ $item->id }}"
+                                        class="accordion-collapse collapse {{ $i === 0 ? ' show' : '' }}"
+                                        data-bs-parent="#accordionExample">
+                                        <div class="card-body pb-0">
+                                            <ul class="timeline ms-1 mb-0">
+                                                @foreach ($item->notifications as $notification)
+                                                    <li class="timeline-item timeline-item-transparent">
+                                                        <span
+                                                            class="timeline-point timeline-point-{{ $notification->zone }}"></span>
+                                                        <div class="timeline-event">
+                                                            <div class="timeline-header">
+                                                                <h6 class="mb-0">{{ $notification->content }}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </div>
-                        </li>
-                        <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
-                            <div class="badge bg-label-info rounded p-2"><i class="ti ti-link ti-sm"></i></div>
-                            <div class="d-flex justify-content-between w-100 flex-wrap">
-                                <h6 class="mb-0 ms-3">Opened</h6>
-                                <div class="d-flex">
-                                    <p class="mb-0 fw-semibold">8,734</p>
-                                    <p class="ms-3 text-success mb-0">2.1%</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
-                            <div class="badge bg-label-warning rounded p-2"><i class="ti ti-click ti-sm"></i></div>
-                            <div class="d-flex justify-content-between w-100 flex-wrap">
-                                <h6 class="mb-0 ms-3">Clicked</h6>
-                                <div class="d-flex">
-                                    <p class="mb-0 fw-semibold">967</p>
-                                    <p class="ms-3 text-success mb-0">1.4%</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
-                            <div class="badge bg-label-primary rounded p-2"><i class="ti ti-users ti-sm"></i></div>
-                            <div class="d-flex justify-content-between w-100 flex-wrap">
-                                <h6 class="mb-0 ms-3">Subscribe</h6>
-                                <div class="d-flex">
-                                    <p class="mb-0 fw-semibold">345</p>
-                                    <p class="ms-3 text-success mb-0">8.5k</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-4 pb-1 d-flex justify-content-between align-items-center">
-                            <div class="badge bg-label-secondary rounded p-2"><i
-                                    class="ti ti-alert-triangle ti-sm text-body"></i></div>
-                            <div class="d-flex justify-content-between w-100 flex-wrap">
-                                <h6 class="mb-0 ms-3">Complaints</h6>
-                                <div class="d-flex">
-                                    <p class="mb-0 fw-semibold">10</p>
-                                    <p class="ms-3 text-success mb-0">1.5%</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center">
-                            <div class="badge bg-label-danger rounded p-2"><i class="ti ti-ban ti-sm"></i></div>
-                            <div class="d-flex justify-content-between w-100 flex-wrap">
-                                <h6 class="mb-0 ms-3">Unsubscribe</h6>
-                                <div class="d-flex">
-                                    <p class="mb-0 fw-semibold">86</p>
-                                    <p class="ms-3 text-success mb-0">0.8%</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                            @endforeach
+                            {{ $history->links('content.panigate.my-panigate') }}</nav>
+                        @else
+                            <h6 class="text-center">Không có dữ liệu</h6>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
         <!--/ Monthly Campaign State -->
-
-        <!-- Source Visit -->
-        <div class="col-xl-4 col-md-6 order-2 order-lg-1">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <div class="card-title mb-0">
-                        <h5 class="mb-0">Source Visits</h5>
-                        <small class="text-muted">38.4k Visitors</small>
-                    </div>
-                    <div class="dropdown">
-                        <button class="btn p-0" type="button" id="sourceVisits" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="ti ti-dots-vertical ti-sm text-muted"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sourceVisits">
-                            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                            <a class="dropdown-item" href="javascript:void(0);">Download</a>
-                            <a class="dropdown-item" href="javascript:void(0);">View All</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-3 pb-1">
-                            <div class="d-flex align-items-start">
-                                <div class="badge bg-label-secondary p-2 me-3 rounded"><i class="ti ti-shadow ti-sm"></i>
-                                </div>
-                                <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
-                                    <div class="me-2">
-                                        <h6 class="mb-0">Direct Source</h6>
-                                        <small class="text-muted">Direct link click</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">1.2k</p>
-                                        <div class="ms-3 badge bg-label-success">+4.2%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-3 pb-1">
-                            <div class="d-flex align-items-start">
-                                <div class="badge bg-label-secondary p-2 me-3 rounded"><i class="ti ti-globe ti-sm"></i>
-                                </div>
-                                <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
-                                    <div class="me-2">
-                                        <h6 class="mb-0">Social Network</h6>
-                                        <small class="text-muted">Social Channels</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">31.5k</p>
-                                        <div class="ms-3 badge bg-label-success">+8.2%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-3 pb-1">
-                            <div class="d-flex align-items-start">
-                                <div class="badge bg-label-secondary p-2 me-3 rounded"><i class="ti ti-mail ti-sm"></i>
-                                </div>
-                                <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
-                                    <div class="me-2">
-                                        <h6 class="mb-0">Email Newsletter</h6>
-                                        <small class="text-muted">Mail Campaigns</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">893</p>
-                                        <div class="ms-3 badge bg-label-success">+2.4%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-3 pb-1">
-                            <div class="d-flex align-items-start">
-                                <div class="badge bg-label-secondary p-2 me-3 rounded"><i
-                                        class="ti ti-external-link ti-sm"></i></div>
-                                <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
-                                    <div class="me-2">
-                                        <h6 class="mb-0">Referrals</h6>
-                                        <small class="text-muted">Impact Radius Visits</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">342</p>
-                                        <div class="ms-3 badge bg-label-danger">-0.4%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-3 pb-1">
-                            <div class="d-flex align-items-start">
-                                <div class="badge bg-label-secondary p-2 me-3 rounded"><i
-                                        class="ti ti-discount-2 ti-sm"></i></div>
-                                <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
-                                    <div class="me-2">
-                                        <h6 class="mb-0">ADVT</h6>
-                                        <small class="text-muted">Google ADVT</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">2.15k</p>
-                                        <div class="ms-3 badge bg-label-success">+9.1%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="mb-2">
-                            <div class="d-flex align-items-start">
-                                <div class="badge bg-label-secondary p-2 me-3 rounded"><i class="ti ti-star ti-sm"></i>
-                                </div>
-                                <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
-                                    <div class="me-2">
-                                        <h6 class="mb-0">Other</h6>
-                                        <small class="text-muted">Many Sources</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0">12.5k</p>
-                                        <div class="ms-3 badge bg-label-success">+6.2%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--/ Source Visit -->
     </div>
+
 
 @endsection

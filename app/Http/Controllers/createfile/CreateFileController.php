@@ -135,7 +135,7 @@ class CreateFileController extends Controller
 
                                     $notification->user_id = $user_id;
                                     $notification->create_file_id = $log_id;
-                                    $notification->content = "Tìm thấy : -".$dong_may."- và --".$ma_hinh."--"."Ghi chú : ".$check_kho[$i]->note;
+                                    $notification->content = "Tìm thấy : ".$dong_may."-- mã :".$ma_hinh."--"."Ghi chú : ".$check_kho[$i]->note;
                                     $notification->save();
                                     Storage::destroy($check_kho[$i]->id);
                                     $kho_lenght = $kho_lenght - 1;

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 
 @section('vendor-script')
@@ -13,7 +14,7 @@
     <!-- Flat Picker -->
     <script src="{{ asset('assets/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-
+    <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 @endsection
 
 @section('page-script')
@@ -123,6 +124,7 @@
                         <th>Mã hình</th>
                         <th>Dòng máy</th>
                         <th>Ghi chú</th>
+                        <th></th>
                     </tr>
                 </thead>
             </table>
@@ -130,5 +132,45 @@
     </div>
     <!--/ Column Search -->
 
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter1">
+        <span class="ti-xs ti ti-plus me-1"></span>Sửa bản ghi
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalCenter1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form id="editStorageForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">Sửa bản ghi</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <label for="emailBasic" class="form-label">Mã hình</label>
+                                <input name="ma_hinh" type="text" id="emailBasic" class="form-control">
+                            </div>
+                            <div class="col mb-0">
+                                <label for="dobBasic" class="form-label">Dòng máy</label>
+                                <input name="dong_may" type="text" id="dobBasic" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameBasic" class="form-label">Ghi chú</label>
+                                <input name="note" type="text" id="nameBasic" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 @endsection

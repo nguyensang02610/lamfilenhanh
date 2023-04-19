@@ -113,7 +113,12 @@ class StorageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kho = Storage::findorFail($id);
+        $kho->ma_hinh = $request->ma_hinh;
+        $kho->dong_may = $request->dong_may;
+        $kho->note = $request->note;
+        $kho->save();
+        // return redirect()->back();
     }
 
     /**
@@ -124,6 +129,6 @@ class StorageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Storage::destroy($id);
     }
 }

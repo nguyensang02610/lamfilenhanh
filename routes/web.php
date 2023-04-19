@@ -31,6 +31,8 @@ Route::group(['prefix' => '/', 'middleware' => 'user'], function() use ($control
     Route::post('/excel-upload', $controller_path . '\createfile\CreateFileController@excel')->name('excel-upload');
     //Tồn kho
     Route::get('/kho', $controller_path . '\storage\StorageController@index')->name('kho');
+    Route::delete('/kho-delete/{id}', $controller_path . '\storage\StorageController@destroy');
+    Route::get('/kho-update/{id}', $controller_path . '\storage\StorageController@update');
     Route::post('/kho-save', $controller_path . '\storage\StorageController@store')->name('kho-save');
     Route::post('/kho-excel', $controller_path . '\storage\StorageController@excelsave')->name('kho-excel');
     Route::get('/api/storage/{user_id}',$controller_path . '\storage\StorageController@getStorageByUserId');
