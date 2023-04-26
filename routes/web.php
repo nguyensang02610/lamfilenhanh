@@ -17,9 +17,11 @@ use App\Http\Controllers\laravel_example\UserManagement;
 */
 
 $controller_path = 'App\Http\Controllers';
-//Login route
+// //Login route
 Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('user-login');
+
 Route::post('/auth/login-basic', $controller_path . '\authentications\LoginBasic@loginSubmit')->name('login-submit');
+
 Route::post('auth/logout', $controller_path. '\authentications\LoginBasic@logout')->name('user-logout');
 //Login admin 
 Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');

@@ -167,10 +167,13 @@ return [
     Laravel\Sanctum\SanctumServiceProvider::class,
     Inertia\ServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+    
 
     /*
          * Package Service Providers...
          */
+
+    Laravel\Passport\PassportServiceProvider::class,
 
     /*
          * Application Service Providers...
