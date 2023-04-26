@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CreateFileController extends ApiController
+class PhoneReplaceController extends ApiController
 {
     /**
      * Display a listing of the resource.

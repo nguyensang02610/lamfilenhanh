@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Infos;
-class InfoController extends Controller
+class InfoController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -48,15 +48,9 @@ class InfoController extends Controller
     {
         $info = Infos::where('user_id', $id)->first();
         if ($info) {
-            return response()->json([
-                'success' => true,
-                'data' => $info
-            ]);
+            return $this->respondSuccess([$info]);
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => 'User info not found'
-            ], 404);
+            return $this->respondNotFound(['Không tìm thấy dữ liệu.']);
         }
     }
 
@@ -80,15 +74,16 @@ class InfoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $existingInfo = Infos::where('user_id',$id)->first();
         if ($existingInfo) {
             $existingInfo->sourcefolder = $request->sourcefolder;
             $existingInfo->exportfolder = $request->exportfolder;
             $existingInfo->exportname = $request->exportname;
             if($existingInfo->save()){
-                return response()->json(['success' => true, 'message' => 'Cập nhật thông tin thành công']);
+                return $this->respondSuccess(["Cập nhật thông tin thành công."]);
             }else{
-                return response()->json(['success' => false, 'message' => 'Cập nhật thông tin thất bại']);
+                return $this->respondNotFound(["Cập nhật thông tin thất bại."]);
             }
         } else {
             $info = new Infos;
@@ -97,9 +92,9 @@ class InfoController extends Controller
             $info->exportfolder = $request->exportfolder;
             $info->exportname = $request->exportname;
             if($info->save()){
-                return response()->json(['success' => true, 'message' => 'Cập nhật thông tin thành công']);
+                return $this->respondSuccess(["Cập nhật thông tin thành công."]);
             }else{
-                return response()->json(['success' => false, 'message' => 'Cập nhật thông tin thất bại']);
+                return $this->respondNotFound(["Cập nhật thông tin thất bại."]);
             }
         }
     }

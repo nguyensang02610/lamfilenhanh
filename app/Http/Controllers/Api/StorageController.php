@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Storage;
 
-class CreateFileController extends ApiController
+class StorageController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +47,13 @@ class CreateFileController extends ApiController
      */
     public function show($id)
     {
-        //
+        $storage = Storage::where('user_id', $id)->orderBy('ma_hinh')->get();
+        // dd($storage);
+        if(count($storage) > 0) {
+            return $this->respondSuccess([$storage]);
+        } else {
+            return $this->respondUnprocessableEntity('Not Found Item');
+        }
     }
 
     /**

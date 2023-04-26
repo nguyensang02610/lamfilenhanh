@@ -34,33 +34,23 @@ class AuthController extends ApiController
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = request(['email', 'password']);
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+        if (!auth()->attempt($credentials)) {
+            return $this->respondUnprocessableEntity('Sai toàn khoản hoặc mật khẩu');
         }
 
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-
-        if (!Auth::attempt($credentials)) {
-            return $this->respondUnprocessableEntity('Sai tài khoản hoặc mật khẩu');
-        }
-
-        $user = $request->user();
-
-        $tokenResult = $user->createToken('Personal Access Token', [$user->role]);
-        // dd($tokenResult->accessToken->token);
+        $tokenResult = auth()->user()->createToken('Personal Access Token');
+        localStorage.setItem('user_id', auth()->user()->id);
+        localStorage.setItem('access_token', $tokenResult->accessToken);
         return $this->respondSuccess([
-            'user_id' => $user->id,
-            'access_token' => $tokenResult->accessToken->token,
+            'id' => auth()->user()->id,
+            'email' => auth()->user()->email,
+            'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
-            'expires_at' => $tokenResult->accessToken->expires_at,
+            'expires_at' => Carbon::parse(
+                $tokenResult->token->expires_at
+            )->toDateTimeString()
         ]);
     }
 
