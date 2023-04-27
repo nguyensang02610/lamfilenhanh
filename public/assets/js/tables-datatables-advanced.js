@@ -37,7 +37,7 @@ $(function () {
 
         var dt_filter = dt_filter_table.DataTable({
             ajax: {
-                url: baseUrl + 'api/storage/' + user_id,
+                url: baseUrl + 'api/storage-local/' + user_id,
             },
             columns: [
                 { data: 'ma_hinh' },

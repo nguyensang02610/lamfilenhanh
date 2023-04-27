@@ -41,8 +41,9 @@ class AuthController extends ApiController
         }
 
         $tokenResult = auth()->user()->createToken('Personal Access Token');
-        localStorage.setItem('user_id', auth()->user()->id);
-        localStorage.setItem('access_token', $tokenResult->accessToken);
+        dd( $tokenResult);
+        // localStorage.setItem('user_id', auth()->user()->id);
+        // localStorage.setItem('access_token', $tokenResult->accessToken);
         return $this->respondSuccess([
             'id' => auth()->user()->id,
             'email' => auth()->user()->email,

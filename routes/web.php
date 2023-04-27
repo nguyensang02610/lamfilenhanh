@@ -37,7 +37,7 @@ Route::group(['prefix' => '/', 'middleware' => 'user'], function() use ($control
     Route::post('/kho-update/{id}', $controller_path . '\storage\StorageController@update');
     Route::post('/kho-save', $controller_path . '\storage\StorageController@store')->name('kho-save');
     Route::post('/kho-excel', $controller_path . '\storage\StorageController@excelsave')->name('kho-excel');
-    Route::get('/api/storage/{user_id}',$controller_path . '\storage\StorageController@getStorageByUserId');
+    Route::get('/api/storage-local/{user_id}',$controller_path . '\storage\StorageController@getStorageByUserId');
 
     //Thay thế dòng máy
     Route::resource('/replace-phone', $controller_path . '\phonereplace\PhoneReplaceController');

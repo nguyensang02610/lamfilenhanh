@@ -6,7 +6,7 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\InfoController;
 use App\Http\Controllers\Api\StorageController;
-
+use App\Http\Controllers\Api\PhoneReplaceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +26,8 @@ Route::group(['middleware' => 'cors'], function() {
 Route::group(['middleware' => ['auth:api','cors']], function(){
     Route::resource('info', InfoController::class);
     Route::resource('storage', StorageController::class);
+    Route::resource('phone-replace', PhoneReplaceController::class);
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
