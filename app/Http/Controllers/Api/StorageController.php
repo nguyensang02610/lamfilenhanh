@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Storage;
+use Illuminate\Http\Request;
 
 class StorageController extends ApiController
 {
@@ -13,9 +12,16 @@ class StorageController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user_id = $request->user()->id;
+        $storage = Storage::where('user_id', $user_id)->orderBy('ma_hinh')->get();
+        // dd($storage);
+        if (count($storage) > 0) {
+            return $this->respondSuccess([$storage]);
+        } else {
+            return $this->respondUnprocessableEntity('Not Found Item');
+        }
     }
 
     /**
@@ -42,10 +48,9 @@ class StorageController extends ApiController
         $kho->ma_hinh = $request->ma_hinh;
         $kho->dong_may = $request->dong_may;
         $kho->note = $request->note;
-        if($kho->save()){
+        if ($kho->save()) {
             return $this->respondSuccess("Thêm mới thành công");
-        }
-        else{
+        } else {
             return $this->respondUnprocessableEntity('Thêm mới thất bại');
         }
     }
@@ -58,13 +63,7 @@ class StorageController extends ApiController
      */
     public function show($id)
     {
-        $storage = Storage::where('user_id', $id)->orderBy('ma_hinh')->get();
-        // dd($storage);
-        if(count($storage) > 0) {
-            return $this->respondSuccess([$storage]);
-        } else {
-            return $this->respondUnprocessableEntity('Not Found Item');
-        }
+
     }
 
     /**
@@ -88,19 +87,18 @@ class StorageController extends ApiController
     public function update(Request $request, $id)
     {
         $kho = Storage::find($id);
-        if($kho){
+        if ($kho) {
             $kho->ma_hinh = $request->ma_hinh;
             $kho->dong_may = $request->dong_may;
             $kho->note = $request->note;
-            if($kho->save()){
+            if ($kho->save()) {
                 return $this->respondSuccess("Cập nhật thành công");
-            }
-            else{
+            } else {
                 return $this->respondError('Cập nhật thất bại');
             }
-        }else{
-            return $this->respondError('Không tìm thấy đối tượng cần cập nhật',400);
-        } 
+        } else {
+            return $this->respondError('Không tìm thấy đối tượng cần cập nhật', 400);
+        }
     }
 
     /**
@@ -112,10 +110,10 @@ class StorageController extends ApiController
     public function destroy($id)
     {
         $status = Storage::destroy($id);
-        if ($status){
+        if ($status) {
             return $this->respondSuccess("Xóa thành công");
-        }else{
-            return $this->respondError('Xóa thất bại',400);
+        } else {
+            return $this->respondError('Xóa thất bại', 400);
         }
     }
 }

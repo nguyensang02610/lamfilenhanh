@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\PhoneReplace;
+use Illuminate\Http\Request;
 
 class PhoneReplaceController extends ApiController
 {
@@ -13,9 +12,15 @@ class PhoneReplaceController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user_id = $request->user()->id;
+        $phones = PhoneReplace::where('user_id', $user_id)->orderBy('dong_may')->get();
+        if (count($phones) > 0) {
+            return $this->respondSuccess([$phones]);
+        } else {
+            return $this->respondUnprocessableEntity('Not Found Item');
+        }
     }
 
     /**
@@ -42,10 +47,9 @@ class PhoneReplaceController extends ApiController
         $phone->dong_may = $request->dong_may;
         $phone->dong_may_thay = $request->dong_may_thay;
         $phone->note = $request->note;
-        if($phone->save()){
+        if ($phone->save()) {
             return $this->respondSuccess("Thêm mới thành công");
-        }
-        else{
+        } else {
             return $this->respondUnprocessableEntity('Thêm mới thất bại');
         }
     }
@@ -58,12 +62,7 @@ class PhoneReplaceController extends ApiController
      */
     public function show($id)
     {
-        $phones = PhoneReplace::where('user_id', $id)->orderBy('dong_may')->get();
-        if(count($phones) > 0) {
-            return $this->respondSuccess([$phones]);
-        } else {
-            return $this->respondUnprocessableEntity('Not Found Item');
-        }
+
     }
 
     /**
@@ -87,19 +86,18 @@ class PhoneReplaceController extends ApiController
     public function update(Request $request, $id)
     {
         $phone = PhoneReplace::find($id);
-        if($phone){
+        if ($phone) {
             $phone->dong_may = $request->dong_may;
             $phone->dong_may_thay = $request->dong_may_thay;
             $phone->note = $request->note;
-            if($phone->save()){
+            if ($phone->save()) {
                 return $this->respondSuccess("Cập nhật thành công");
-            }
-            else{
+            } else {
                 return $this->respondError('Cập nhật thất bại');
             }
-        }else{
-            return $this->respondError('Không tìm thấy đối tượng cần cập nhật',400);
-        } 
+        } else {
+            return $this->respondError('Không tìm thấy đối tượng cần cập nhật', 400);
+        }
     }
 
     /**
@@ -111,10 +109,10 @@ class PhoneReplaceController extends ApiController
     public function destroy($id)
     {
         $status = PhoneReplace::destroy($id);
-        if ($status){
+        if ($status) {
             return $this->respondSuccess("Xóa thành công");
-        }else{
-            return $this->respondError('Xóa thất bại',400);
+        } else {
+            return $this->respondError('Xóa thất bại', 400);
         }
     }
 }
