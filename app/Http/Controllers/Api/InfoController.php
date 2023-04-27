@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Infos;
+use Illuminate\Http\Request;
+
 class InfoController extends ApiController
 {
     /**
@@ -12,9 +12,15 @@ class InfoController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
+        $user_id = $request->user()->id;
+        $info = Infos::where('user_id', $user_id)->first();
+        if ($info) {
+            return $this->respondSuccess([$info]);
+        } else {
+            return $this->respondNotFound(['Không tìm thấy dữ liệu.']);
+        }
     }
 
     /**
@@ -35,7 +41,7 @@ class InfoController extends ApiController
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -46,12 +52,7 @@ class InfoController extends ApiController
      */
     public function show($id)
     {
-        $info = Infos::where('user_id', $id)->first();
-        if ($info) {
-            return $this->respondSuccess([$info]);
-        } else {
-            return $this->respondNotFound(['Không tìm thấy dữ liệu.']);
-        }
+
     }
 
     /**
@@ -75,14 +76,14 @@ class InfoController extends ApiController
     public function update(Request $request, $id)
     {
         // dd($request);
-        $existingInfo = Infos::where('user_id',$id)->first();
+        $existingInfo = Infos::where('user_id', $id)->first();
         if ($existingInfo) {
             $existingInfo->sourcefolder = $request->sourcefolder;
             $existingInfo->exportfolder = $request->exportfolder;
             $existingInfo->exportname = $request->exportname;
-            if($existingInfo->save()){
+            if ($existingInfo->save()) {
                 return $this->respondSuccess(["Cập nhật thông tin thành công."]);
-            }else{
+            } else {
                 return $this->respondNotFound(["Cập nhật thông tin thất bại."]);
             }
         } else {
@@ -91,9 +92,9 @@ class InfoController extends ApiController
             $info->sourcefolder = $request->sourcefolder;
             $info->exportfolder = $request->exportfolder;
             $info->exportname = $request->exportname;
-            if($info->save()){
+            if ($info->save()) {
                 return $this->respondSuccess(["Cập nhật thông tin thành công."]);
-            }else{
+            } else {
                 return $this->respondNotFound(["Cập nhật thông tin thất bại."]);
             }
         }
