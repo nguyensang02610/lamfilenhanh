@@ -34,7 +34,6 @@
     // dd($info);
     ?>
     <div class="row">
-
         <!-- Earning Reports -->
         <div class="col-lg-8 mb-4">
             <div class="card h-100">

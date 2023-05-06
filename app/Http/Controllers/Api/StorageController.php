@@ -18,7 +18,7 @@ class StorageController extends ApiController
         $storage = Storage::where('user_id', $user_id)->orderBy('ma_hinh')->get();
         // dd($storage);
         if (count($storage) > 0) {
-            return $this->respondSuccess([$storage]);
+            return $this->respondSuccess($storage);
         } else {
             return $this->respondUnprocessableEntity('Not Found Item');
         }
@@ -114,6 +114,22 @@ class StorageController extends ApiController
             return $this->respondSuccess("Xóa thành công");
         } else {
             return $this->respondError('Xóa thất bại', 400);
+        }
+    }
+
+    public function findByType(Request $request)
+    {
+        // dd($request);
+        $user_id = $request->user()->id;
+        $storage = Storage::where('user_id', $user_id)
+            ->where('dong_may', $request->dong_may)
+            ->where('ma_hinh', $request->ma_hinh)
+            ->get();
+
+        if (count($storage) > 0) {
+            return $this->respondSuccess($storage);
+        } else {
+            return null;
         }
     }
 }

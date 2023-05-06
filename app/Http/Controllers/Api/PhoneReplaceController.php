@@ -17,7 +17,7 @@ class PhoneReplaceController extends ApiController
         $user_id = $request->user()->id;
         $phones = PhoneReplace::where('user_id', $user_id)->orderBy('dong_may')->get();
         if (count($phones) > 0) {
-            return $this->respondSuccess([$phones]);
+            return $this->respondSuccess($phones);
         } else {
             return $this->respondUnprocessableEntity('Not Found Item');
         }
@@ -110,9 +110,19 @@ class PhoneReplaceController extends ApiController
     {
         $status = PhoneReplace::destroy($id);
         if ($status) {
-            return $this->respondSuccess("Xóa thành công");
+            return $this->respondSuccess('Xóa thành công');
         } else {
             return $this->respondError('Xóa thất bại', 400);
         }
+    }
+
+    public function find(Request $request)
+    {
+        dd($request->all());
+        $data = PhoneReplace::where('user_id', $request->user()->id)
+            ->where('dong_may', 'LIKE', $request->dong_may)
+            ->first();
+        return $data->dong_may_thay;
+        // dd($dong_may_replace);
     }
 }

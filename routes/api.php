@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CreateFileController;
+use App\Http\Controllers\Api\CreateFileHistoryController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\InfoController;
 use App\Http\Controllers\Api\PhoneReplaceController;
@@ -28,8 +30,13 @@ Route::group(['middleware' => ['auth:api', 'cors']], function () {
     Route::resource('info', InfoController::class);
     Route::resource('storage', StorageController::class);
     Route::resource('phone-replace', PhoneReplaceController::class);
-
+    Route::resource('history', CreateFileHistoryController::class);
     Route::get('home', [HomeController::class, 'index']);
+
+    Route::post('find', [StorageController::class, 'findByType']);
+
+    Route::post('new-notification', [CreateFileController::class, 'store']);
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

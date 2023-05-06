@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\ValidationException;
-use GuzzleHttp\Client;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends ApiController
 {
@@ -41,7 +36,7 @@ class AuthController extends ApiController
         }
 
         $tokenResult = auth()->user()->createToken('Personal Access Token');
-        dd( $tokenResult);
+        // dd( $tokenResult);
         // localStorage.setItem('user_id', auth()->user()->id);
         // localStorage.setItem('access_token', $tokenResult->accessToken);
         return $this->respondSuccess([
@@ -51,7 +46,7 @@ class AuthController extends ApiController
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
-            )->toDateTimeString()
+            )->toDateTimeString(),
         ]);
     }
 
@@ -60,7 +55,7 @@ class AuthController extends ApiController
         $user = auth()->user()->token();
         $user->revoke();
         return $this->respondSuccess([
-            'user' => 'Logout success'
+            'user' => 'Logout success',
         ]);
     }
 

@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\laravel_example\UserManagement;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +12,7 @@ use App\Http\Controllers\laravel_example\UserManagement;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 $controller_path = 'App\Http\Controllers';
 // //Login route
@@ -22,12 +20,12 @@ Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@
 
 Route::post('/auth/login-basic', $controller_path . '\authentications\LoginBasic@loginSubmit')->name('login-submit');
 
-Route::post('auth/logout', $controller_path. '\authentications\LoginBasic@logout')->name('user-logout');
-//Login admin 
+Route::post('auth/logout', $controller_path . '\authentications\LoginBasic@logout')->name('user-logout');
+//Login admin
 Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
 
 //User Route
-Route::group(['prefix' => '/', 'middleware' => 'user'], function() use ($controller_path){
+Route::group(['prefix' => '/', 'middleware' => 'user'], function () use ($controller_path) {
     Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
     Route::post('/info-save', $controller_path . '\info\InfoController@store')->name('info-save');
     Route::post('/excel-upload', $controller_path . '\createfile\CreateFileController@excel')->name('excel-upload');
@@ -37,14 +35,13 @@ Route::group(['prefix' => '/', 'middleware' => 'user'], function() use ($control
     Route::post('/kho-update/{id}', $controller_path . '\storage\StorageController@update');
     Route::post('/kho-save', $controller_path . '\storage\StorageController@store')->name('kho-save');
     Route::post('/kho-excel', $controller_path . '\storage\StorageController@excelsave')->name('kho-excel');
-    Route::get('/api/storage-local/{user_id}',$controller_path . '\storage\StorageController@getStorageByUserId');
+    Route::get('/api/storage-local/{user_id}', $controller_path . '\storage\StorageController@getStorageByUserId');
 
     //Thay thế dòng máy
     Route::resource('/replace-phone', $controller_path . '\phonereplace\PhoneReplaceController');
 
     Route::post('/replace-phone-excel', $controller_path . '\phonereplace\PhoneReplaceController@excelsave')->name('phone-excel');
-    Route::get('/api/replace-phone/{user_id}',$controller_path . '\phonereplace\PhoneReplaceController@showid');
-
+    Route::get('/api/replace-phone/{user_id}', $controller_path . '\phonereplace\PhoneReplaceController@showid');
 
     Route::get('/download', function () {
         $file_path = public_path('assets/excel/upload excel.xlsx');
@@ -58,7 +55,7 @@ Route::group(['prefix' => '/', 'middleware' => 'user'], function() use ($control
 });
 
 //Admin Route
-Route::group(['prefix' => '/admin', 'middleware' => ['auth','admin']] , function() use ($controller_path){
+Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () use ($controller_path) {
     Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('admin-dashboard');
 });
 

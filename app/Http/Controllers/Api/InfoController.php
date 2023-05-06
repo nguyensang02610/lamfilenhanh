@@ -17,7 +17,7 @@ class InfoController extends ApiController
         $user_id = $request->user()->id;
         $info = Infos::where('user_id', $user_id)->first();
         if ($info) {
-            return $this->respondSuccess([$info]);
+            return $this->respondSuccess($info);
         } else {
             return $this->respondNotFound(['Không tìm thấy dữ liệu.']);
         }
