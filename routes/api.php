@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth:api', 'cors']], function () {
     Route::resource('history', CreateFileHistoryController::class);
     Route::get('home', [HomeController::class, 'index']);
 
-    Route::post('find', [StorageController::class, 'findByType']);
+    Route::get('find', [StorageController::class, 'findByType']);
 
     Route::post('new-notification', [CreateFileController::class, 'store']);
 

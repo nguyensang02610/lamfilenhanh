@@ -121,10 +121,7 @@ class StorageController extends ApiController
     {
         // dd($request);
         $user_id = $request->user()->id;
-        $storage = Storage::where('user_id', $user_id)
-            ->where('dong_may', $request->dong_may)
-            ->where('ma_hinh', $request->ma_hinh)
-            ->get();
+        $storage = Storage::where('user_id', $user_id)->get();
 
         if (count($storage) > 0) {
             return $this->respondSuccess($storage);
