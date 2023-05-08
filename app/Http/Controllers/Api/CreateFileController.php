@@ -14,6 +14,9 @@ class CreateFileController extends ApiController
         $notification->user_id = $request->user_id;
         $notification->create_file_id = $request->create_file_id;
         $notification->content = $request->content;
+        if (isset($request->zone)) {
+            $notification->zone = $request->zone;
+        }
         $notification->save();
         return $this->respondSuccess('Thêm thông báo thành công');
     }

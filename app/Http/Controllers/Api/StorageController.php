@@ -42,7 +42,7 @@ class StorageController extends ApiController
      */
     public function store(Request $request)
     {
-        $user_id = $request->user_id;
+        $user_id = $request->user()->id;
         $kho = new Storage;
         $kho->user_id = $user_id;
         $kho->ma_hinh = $request->ma_hinh;
