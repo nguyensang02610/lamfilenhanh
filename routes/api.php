@@ -23,6 +23,16 @@ use Illuminate\Support\Facades\Route;
 //Route Login
 Route::group(['middleware' => 'cors'], function () {
     Route::post('user/login', [AuthController::class, 'login']);
+
+    Route::get('/download', function () {
+        $file_path = public_path('assets/excel/upload kho.xlsx');
+        return response()->download($file_path);
+    });
+
+    Route::get('/download-phone', function () {
+        $file_path = public_path('assets/excel/thay dong may.xlsx');
+        return response()->download($file_path);
+    });
 });
 
 //User Route
@@ -38,16 +48,6 @@ Route::group(['middleware' => ['auth:api', 'cors']], function () {
 
     Route::post('new-notification', [CreateFileController::class, 'store']);
 
-});
-
-Route::get('/download', function () {
-    $file_path = public_path('assets/excel/upload kho.xlsx');
-    return response()->download($file_path);
-});
-
-Route::get('/download-phone', function () {
-    $file_path = public_path('assets/excel/thay dong may.xlsx');
-    return response()->download($file_path);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

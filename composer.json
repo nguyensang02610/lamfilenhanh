@@ -10,7 +10,7 @@
   "require": {
     "php": "^8.0.2",
     "dusterio/lumen-passport": "*",
-    "fruitcake/laravel-cors": "^2.0.5",
+    "fruitcake/laravel-cors": "^3.0",
     "guzzlehttp/guzzle": "^7.2",
     "inertiajs/inertia-laravel": "^0.6.9",
     "laravel/framework": "^9.0",
