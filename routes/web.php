@@ -44,7 +44,7 @@ Route::group(['prefix' => '/', 'middleware' => 'user'], function () use ($contro
     Route::get('/api/replace-phone/{user_id}', $controller_path . '\phonereplace\PhoneReplaceController@showid');
 
     Route::get('/download', function () {
-        $file_path = public_path('assets/excel/upload excel.xlsx');
+        $file_path = public_path('assets/excel/upload kho.xlsx');
         return response()->download($file_path);
     });
 

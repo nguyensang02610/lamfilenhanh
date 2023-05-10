@@ -34,9 +34,20 @@ Route::group(['middleware' => ['auth:api', 'cors']], function () {
     Route::get('home', [HomeController::class, 'index']);
 
     Route::get('find', [StorageController::class, 'findByType']);
+    Route::post('upload-excel', [StorageController::class, 'ExcelUpload']);
 
     Route::post('new-notification', [CreateFileController::class, 'store']);
 
+});
+
+Route::get('/download', function () {
+    $file_path = public_path('assets/excel/upload kho.xlsx');
+    return response()->download($file_path);
+});
+
+Route::get('/download-phone', function () {
+    $file_path = public_path('assets/excel/thay dong may.xlsx');
+    return response()->download($file_path);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

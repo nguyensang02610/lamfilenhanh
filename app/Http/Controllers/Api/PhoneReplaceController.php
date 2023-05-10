@@ -41,7 +41,7 @@ class PhoneReplaceController extends ApiController
      */
     public function store(Request $request)
     {
-        $user_id = $request->user_id;
+        $user_id = $request->user()->id;
         $phone = new PhoneReplace;
         $phone->user_id = $user_id;
         $phone->dong_may = $request->dong_may;
