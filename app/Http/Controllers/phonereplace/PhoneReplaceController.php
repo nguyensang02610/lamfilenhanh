@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\phonereplace;
 
 use App\Http\Controllers\Controller;
+use App\Models\PhoneReplace;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-
-use App\Models\PhoneReplace;
 
 class PhoneReplaceController extends Controller
 {
@@ -49,16 +48,16 @@ class PhoneReplaceController extends Controller
         return redirect()->back();
     }
 
-
-    public function excelsave(Request $request){
+    public function excelsave(Request $request)
+    {
         $user_id = $request->user()->id;
         $file = $request->file('excelfile');
         $inputFileType = IOFactory::identify($file);
-        $reader  = IOFactory::createReader($inputFileType);
+        $reader = IOFactory::createReader($inputFileType);
         $spreadsheet = $reader->load($file);
         $worksheet = $spreadsheet->getSheetByName('sheet');
         $data = $worksheet->toArray();
-        foreach (array_slice($data, 1) as $row){
+        foreach (array_slice($data, 1) as $row) {
             try {
                 $phone = new PhoneReplace;
                 $phone->user_id = $user_id;
@@ -84,7 +83,7 @@ class PhoneReplaceController extends Controller
     public function show($id)
     {
         $phones = PhoneReplace::where('user_id', $id)->orderBy('dong_may')->get();
-        if($phones) {
+        if ($phones) {
             return response()->json(['data' => $phones], 200);
         } else {
             return response()->json(['error' => 'Storage not found'], 404);

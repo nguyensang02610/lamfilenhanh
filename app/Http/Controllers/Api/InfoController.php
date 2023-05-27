@@ -14,7 +14,7 @@ class InfoController extends ApiController
      */
     public function index(Request $request)
     {
-        $user_id = $request->user()->id;
+        $user_id = $request->header('userid');
         $info = Infos::where('user_id', $user_id)->first();
         if ($info) {
             return $this->respondSuccess($info);
@@ -41,7 +41,29 @@ class InfoController extends ApiController
      */
     public function store(Request $request)
     {
-
+        $user_id = $request->header('userid');
+        $existingInfo = Infos::where('user_id', $user_id)->first();
+        if ($existingInfo) {
+            $existingInfo->sourcefolder = $request->sourcefolder;
+            $existingInfo->exportfolder = $request->exportfolder;
+            $existingInfo->exportname = $request->exportname;
+            if ($existingInfo->save()) {
+                return $this->respondSuccess(["Cập nhật thông tin thành công."]);
+            } else {
+                return $this->respondNotFound(["Cập nhật thông tin thất bại."]);
+            }
+        } else {
+            $info = new Infos;
+            $info->user_id = $id;
+            $info->sourcefolder = $request->sourcefolder;
+            $info->exportfolder = $request->exportfolder;
+            $info->exportname = $request->exportname;
+            if ($info->save()) {
+                return $this->respondSuccess(["Cập nhật thông tin thành công."]);
+            } else {
+                return $this->respondNotFound(["Cập nhật thông tin thất bại."]);
+            }
+        }
     }
 
     /**

@@ -14,13 +14,10 @@ class PhoneReplaceController extends ApiController
      */
     public function index(Request $request)
     {
-        $user_id = $request->user()->id;
+        $user_id = $request->header('userid');
         $phones = PhoneReplace::where('user_id', $user_id)->orderBy('dong_may')->get();
-        if (count($phones) > 0) {
-            return $this->respondSuccess($phones);
-        } else {
-            return $this->respondUnprocessableEntity('Not Found Item');
-        }
+        return $this->respondSuccess($phones);
+
     }
 
     /**
@@ -41,7 +38,7 @@ class PhoneReplaceController extends ApiController
      */
     public function store(Request $request)
     {
-        $user_id = $request->user()->id;
+        $user_id = $request->header('userid');
         $phone = new PhoneReplace;
         $phone->user_id = $user_id;
         $phone->dong_may = $request->dong_may;

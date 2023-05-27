@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\storage;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Storage;
+use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class StorageController extends Controller
@@ -20,24 +20,26 @@ class StorageController extends Controller
         return view('content.tables.tables-datatables-advanced', compact('user_id'));
     }
 
-    public function getStorageByUserId($user_id) {
+    public function getStorageByUserId($user_id)
+    {
         $storage = Storage::where('user_id', $user_id)->orderBy('ma_hinh')->get();
-        if($storage) {
+        if ($storage) {
             return response()->json(['data' => $storage], 200);
         } else {
             return response()->json(['error' => 'Storage not found'], 404);
         }
     }
 
-    public function excelsave(Request $request){
+    public function excelsave(Request $request)
+    {
         $user_id = $request->user()->id;
         $file = $request->file('excelfile');
         $inputFileType = IOFactory::identify($file);
-        $reader  = IOFactory::createReader($inputFileType);
+        $reader = IOFactory::createReader($inputFileType);
         $spreadsheet = $reader->load($file);
         $worksheet = $spreadsheet->getSheetByName('sheet');
         $data = $worksheet->toArray();
-        foreach (array_slice($data, 1) as $row){
+        foreach (array_slice($data, 1) as $row) {
             try {
                 $storage = new Storage;
                 $storage->user_id = $user_id;
@@ -118,7 +120,6 @@ class StorageController extends Controller
         $kho->dong_may = $request->dong_may;
         $kho->note = $request->note;
         $kho->save();
-
 
         // return redirect()->back();
     }

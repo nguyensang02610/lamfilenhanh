@@ -36,7 +36,8 @@ Route::group(['middleware' => 'cors'], function () {
 });
 
 //User Route
-Route::group(['middleware' => ['auth:api', 'cors']], function () {
+Route::group(['middleware' => 'cors'], function () {
+    //Get info by user
     Route::resource('info', InfoController::class);
     Route::resource('storage', StorageController::class);
     Route::resource('phone-replace', PhoneReplaceController::class);
@@ -47,6 +48,8 @@ Route::group(['middleware' => ['auth:api', 'cors']], function () {
     Route::post('upload-excel', [StorageController::class, 'ExcelUpload']);
 
     Route::post('new-notification', [CreateFileController::class, 'store']);
+
+    Route::get('update-time-user/{time}', [CreateFileController::class, 'updateTime']);
 
 });
 

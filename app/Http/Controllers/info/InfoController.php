@@ -3,12 +3,8 @@
 namespace App\Http\Controllers\info;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Infos;
-use Illuminate\Support\FacadesFile;
-use Carbon\Carbon;
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use File;
+use Illuminate\Http\Request;
 
 class InfoController extends Controller
 {
@@ -32,7 +28,6 @@ class InfoController extends Controller
         //
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -50,7 +45,7 @@ class InfoController extends Controller
             return redirect()->back()->with('success', 'Info updated successfully.');
         } else {
             $info = new Infos;
-            $info->user_id = $request->user()->id;
+            $info->user_id = $request->header('userid');
             $info->sourcefolder = $request->sourcefolder;
             $info->exportfolder = $request->exportfolder;
             $info->exportname = $request->exportname;
@@ -58,7 +53,6 @@ class InfoController extends Controller
             return redirect()->back()->with('success', 'Info saved successfully.');
         }
     }
-
 
     /**
      * Display the specified resource.

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
@@ -13,11 +13,11 @@ return [
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
     |
-    */
+     */
 
-  'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Laravel'),
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
@@ -26,11 +26,11 @@ return [
     | running in. This may determine how you prefer to configure various
     | services the application utilizes. Set this in your ".env" file.
     |
-    */
+     */
 
-  'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'production'),
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
@@ -39,11 +39,11 @@ return [
     | stack traces will be shown on every error that occurs within your
     | application. If disabled, a simple generic error page is shown.
     |
-    */
+     */
 
-  'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
@@ -52,13 +52,13 @@ return [
     | the Artisan command line tool. You should set this to the root of
     | your application so that it is used when running Artisan tasks.
     |
-    */
+     */
 
-  'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost'),
 
-  'asset_url' => env('ASSET_URL'),
+    'asset_url' => env('ASSET_URL'),
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
@@ -67,11 +67,11 @@ return [
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
-    */
+     */
 
     'timezone' => 'Asia/Ho_Chi_Minh',
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
     |--------------------------------------------------------------------------
@@ -80,11 +80,11 @@ return [
     | by the translation service provider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
-    */
+     */
 
     'locale' => 'vn',
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
     |--------------------------------------------------------------------------
@@ -93,11 +93,11 @@ return [
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
     |
-    */
+     */
 
-  'fallback_locale' => 'en',
+    'fallback_locale' => 'en',
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Faker Locale
     |--------------------------------------------------------------------------
@@ -106,11 +106,11 @@ return [
     | data for your database seeds. For example, this will be used to get
     | localized telephone numbers, street address information and more.
     |
-    */
+     */
 
-  'faker_locale' => 'en_US',
+    'faker_locale' => 'en_US',
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
@@ -119,13 +119,13 @@ return [
     | to a random, 32 character string, otherwise these encrypted strings
     | will not be safe. Please do this before deploying an application!
     |
-    */
+     */
 
-  'key' => env('APP_KEY'),
+    'key' => env('APP_KEY'),
 
-  'cipher' => 'AES-256-CBC',
+    'cipher' => 'AES-256-CBC',
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
@@ -134,60 +134,60 @@ return [
     | request to your application. Feel free to add your own services to
     | this array to grant expanded functionality to your applications.
     |
-    */
+     */
 
-  'providers' => [
+    'providers' => [
 
-    /*
+        /*
          * Laravel Framework Service Providers...
          */
-    Illuminate\Auth\AuthServiceProvider::class,
-    Illuminate\Broadcasting\BroadcastServiceProvider::class,
-    Illuminate\Bus\BusServiceProvider::class,
-    Illuminate\Cache\CacheServiceProvider::class,
-    Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-    Illuminate\Cookie\CookieServiceProvider::class,
-    Illuminate\Database\DatabaseServiceProvider::class,
-    Illuminate\Encryption\EncryptionServiceProvider::class,
-    Illuminate\Filesystem\FilesystemServiceProvider::class,
-    Illuminate\Foundation\Providers\FoundationServiceProvider::class,
-    Illuminate\Hashing\HashServiceProvider::class,
-    Illuminate\Mail\MailServiceProvider::class,
-    Illuminate\Notifications\NotificationServiceProvider::class,
-    Illuminate\Pagination\PaginationServiceProvider::class,
-    Illuminate\Pipeline\PipelineServiceProvider::class,
-    Illuminate\Queue\QueueServiceProvider::class,
-    Illuminate\Redis\RedisServiceProvider::class,
-    Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
-    Illuminate\Session\SessionServiceProvider::class,
-    Illuminate\Translation\TranslationServiceProvider::class,
-    Illuminate\Validation\ValidationServiceProvider::class,
-    Illuminate\View\ViewServiceProvider::class,
-    Laravel\Jetstream\JetstreamServiceProvider::class,
-    Laravel\Sanctum\SanctumServiceProvider::class,
-    Inertia\ServiceProvider::class,
-    RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-    
+        Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        Illuminate\Bus\BusServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+        Illuminate\Cookie\CookieServiceProvider::class,
+        Illuminate\Database\DatabaseServiceProvider::class,
+        Illuminate\Encryption\EncryptionServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+        Illuminate\Hashing\HashServiceProvider::class,
+        Illuminate\Mail\MailServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
+        Illuminate\Pagination\PaginationServiceProvider::class,
+        Illuminate\Pipeline\PipelineServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
+        Illuminate\Redis\RedisServiceProvider::class,
+        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+        Illuminate\Session\SessionServiceProvider::class,
+        Illuminate\Translation\TranslationServiceProvider::class,
+        Illuminate\Validation\ValidationServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
+        Laravel\Jetstream\JetstreamServiceProvider::class,
+        Laravel\Sanctum\SanctumServiceProvider::class,
+        Inertia\ServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Fruitcake\Cors\CorsServiceProvider::class,
 
-    /*
+        /*
          * Package Service Providers...
          */
 
-    Laravel\Passport\PassportServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
-    /*
+        /*
          * Application Service Providers...
          */
-    App\Providers\AppServiceProvider::class,
-    App\Providers\AuthServiceProvider::class,
-    // App\Providers\BroadcastServiceProvider::class,
-    App\Providers\EventServiceProvider::class,
-    App\Providers\RouteServiceProvider::class,
-    App\Providers\MenuServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+        App\Providers\MenuServiceProvider::class,
 
-  ],
+    ],
 
-  /*
+    /*
     |--------------------------------------------------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
@@ -196,12 +196,12 @@ return [
     | is started. However, feel free to register as many as you wish as
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
-    */
+     */
 
-  'aliases' => Facade::defaultAliases()->merge([
-    // ...
-    'Helper' => App\Helpers\Helpers::class,
-    'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-  ])->toArray(),
+    'aliases' => Facade::defaultAliases()->merge([
+        // ...
+        'Helper' => App\Helpers\Helpers::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+    ])->toArray(),
 
 ];

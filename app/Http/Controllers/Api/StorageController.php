@@ -14,7 +14,7 @@ class StorageController extends ApiController
      */
     public function index(Request $request)
     {
-        $user_id = $request->user()->id;
+        $user_id = $request->header('userid');
         $storage = Storage::where('user_id', $user_id)->orderBy('ma_hinh')->get();
         // dd($storage);
         if ($storage) {
@@ -42,7 +42,7 @@ class StorageController extends ApiController
      */
     public function store(Request $request)
     {
-        $user_id = $request->user()->id;
+        $user_id = $request->header('userid');
 
         if ($request->so_luong == null) {
             $so_luong = 1;
@@ -84,7 +84,7 @@ class StorageController extends ApiController
 
     public function ExcelUpload(Request $request)
     {
-        $user_id = $request->user()->id;
+        $user_id = $request->header('userid');
         $data = $request->data;
         foreach ($data as $item) {
             if ($item['dong_may'] == null || $item['ma_hinh'] == null) {
@@ -186,7 +186,7 @@ class StorageController extends ApiController
     public function findByType(Request $request)
     {
         // dd($request);
-        $user_id = $request->user()->id;
+        $user_id = $request->header('userid');
         $storage = Storage::where('user_id', $user_id)->get();
 
         if (count($storage) > 0) {
