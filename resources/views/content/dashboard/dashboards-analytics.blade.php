@@ -43,17 +43,17 @@
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Đường dẫn Thư mục hình gốc</label>
                             <input name="sourcefolder" type="text" class="form-control" required
-                                value="{{ $info->sourcefolder }}">
+                                value="{{ optional($info)->sourcefolder }}">
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Đường dẫn Thư mục xuất file</label>
                             <input name="exportfolder" type="text" class="form-control" required
-                                value="{{ $info->exportfolder }}">
+                                value="{{ optional($info)->exportfolder }}">
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Tên thư mục xuất file</label>
                             <input name="exportname" style="max-width:250px" type="text" class="form-control"
-                                id="exampleFormControlInput1" required value="{{ $info->exportname }}">
+                                id="exampleFormControlInput1" required value="{{ optional($info)->exportname }}">
                         </div>
                         <button type="submit" class="btn btn-primary waves-effect waves-light btn-save">
                             <span class="ti-xs ti ti-star me-1"></span>Lưu

@@ -120,8 +120,7 @@
                         <th>Id</th>
                         <th>Tên</th>
                         <th>Email</th>
-                        <th>Xác thực</th>
-                        {{-- <th>Lượt sử dụng</th> --}}
+                        <th>Lượt sử dụng</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -138,21 +137,19 @@
                     <input type="hidden" name="id" id="user_id">
                     <div class="mb-3">
                         <label class="form-label" for="add-user-fullname">Tên</label>
-                        <input type="text" class="form-control" id="add-user-fullname" name="name"/>
+                        <input type="text" class="form-control" id="add-user-fullname" name="name" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="add-user-email">Email</label>
                         <input type="text" id="add-user-email" class="form-control" name="email" />
                     </div>
                     <div class="mb-3">
+                        <label class="form-label" for="lansudung">Số lần sử dụng</label>
+                        <input type="text" id="lansudung" class="form-control" name="lansudung" />
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label" for="add-user-email">Mật khẩu</label>
                         <input type="password" id="add-user-password" class="form-control" name="password" />
-                    </div>
-                    <div class="mb-3">
-                        <input type="hidden" class="form-control" name="role" value="1"/>
-                    </div>
-                    <div class="mb-3">
-                        <input type="hidden" class="form-control" name="status" value="1"/>
                     </div>
                     <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Xác nhận</button>
                     <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Thoát</button>

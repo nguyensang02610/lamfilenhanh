@@ -15,13 +15,11 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {
-        dd($request->user());
-        if($request->user()->role=='0'){
+        if ($request->user()->role == '0') {
             return $next($request);
-        }
-        else{
-            request()->session()->flash('error','You do not have any permission to access this page');
-            return redirect('/login');
+        } else {
+            request()->session()->flash('error', 'Bạn không có quyền truy cập vào page này.');
+            return redirect()->route('user-login');
         }
     }
 }
