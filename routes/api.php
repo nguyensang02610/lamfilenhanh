@@ -49,6 +49,8 @@ Route::group(['middleware' => 'cors'], function () {
 
     Route::post('new-notification', [CreateFileController::class, 'store']);
 
+    Route::post('push-notification', [CreateFileController::class, 'storeAll']);
+
     Route::get('update-time-user/{time}', [CreateFileController::class, 'updateTime']);
 
 });

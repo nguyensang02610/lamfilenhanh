@@ -120,6 +120,7 @@
                         <th>Id</th>
                         <th>Tên</th>
                         <th>Email</th>
+                        <th>Phân quyền</th>
                         <th>Lượt sử dụng</th>
                         <th>Hành động</th>
                     </tr>

@@ -13,25 +13,14 @@
           "url": "/",
           "name": "Làm file nhanh",
           "slug": "dashboard-analytics"
-        },
-        {
-          "url": "/kho",
-          "name": "Advance",
-          "slug": "tables-datatables-advanced"
         }
       ]
     },
     {
-      "name": "Quản lý tài khoản",
-      "icon": "menu-icon tf-icons ti ti-brand-php",
-      "slug": "laravel-example",
-      "submenu": [
-        {
-          "url": "laravel/user-management",
-          "name": "User Management",
-          "slug": "laravel-example-user-management"
-        }
-      ]
+      "url": "/laravel/user-management",
+      "icon": "menu-icon tf-icons ti ti-user",
+      "name": "Quản lý user",
+      "slug": "laravel-example-user-management"
     },
     {
       "menuHeader": "Kho và tiện ích"

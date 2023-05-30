@@ -22,6 +22,11 @@ class CreateFileController extends ApiController
         return $this->respondSuccess('Thêm thông báo thành công');
     }
 
+    public function storeAll(Request $request)
+    {
+
+    }
+
     public function updateTime(Request $request, $time)
     {
         $user_id = $request->header('userid');
