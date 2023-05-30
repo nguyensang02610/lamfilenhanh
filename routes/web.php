@@ -24,13 +24,8 @@ Route::post('auth/logout', $controller_path . '\authentications\LoginBasic@logou
 //Login admin
 Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
 
-//Admin Route
-Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'admin']], function () use ($controller_path) {;
-
-});
-
 //User Route
-Route::group(['prefix' => '/', 'middleware' => 'admin'], function () use ($controller_path) {
+Route::group(['prefix' => '/', 'middleware' => ['user', 'admin']], function () use ($controller_path) {
     Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
     Route::post('/info-save', $controller_path . '\info\InfoController@store')->name('info-save');
     Route::post('/excel-upload', $controller_path . '\createfile\CreateFileController@excel')->name('excel-upload');
@@ -58,8 +53,8 @@ Route::group(['prefix' => '/', 'middleware' => 'admin'], function () use ($contr
         return response()->download($file_path);
     });
 
-});
+    // laravel example
+    Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
+    Route::resource('/user-list', UserManagement::class);
 
-// laravel example
-Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-Route::resource('/user-list', UserManagement::class);
+});
