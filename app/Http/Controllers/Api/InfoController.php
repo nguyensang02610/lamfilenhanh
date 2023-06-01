@@ -47,6 +47,8 @@ class InfoController extends ApiController
             $existingInfo->sourcefolder = $request->sourcefolder;
             $existingInfo->exportfolder = $request->exportfolder;
             $existingInfo->exportname = $request->exportname;
+            $existingInfo->lazada_dongmay = $request->lazada_dongmay;
+            $existingInfo->lazada_mahinh = $request->lazada_mahinh;
             if ($existingInfo->save()) {
                 return $this->respondSuccess(["Cập nhật thông tin thành công."]);
             } else {
@@ -58,6 +60,8 @@ class InfoController extends ApiController
             $info->sourcefolder = $request->sourcefolder;
             $info->exportfolder = $request->exportfolder;
             $info->exportname = $request->exportname;
+            $info->lazada_dongmay = $request->lazada_dongmay;
+            $info->lazada_mahinh = $request->lazada_mahinh;
             if ($info->save()) {
                 return $this->respondSuccess(["Cập nhật thông tin thành công."]);
             } else {

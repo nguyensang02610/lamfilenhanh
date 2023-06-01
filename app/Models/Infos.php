@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Infos extends Model
 {
-    protected $fillable=['user_id','lansudung', 'sourcefolder ', 'exportfolder' , 'exportname'];
+    protected $fillable = ['user_id', 'lansudung', 'sourcefolder ', 'exportfolder', 'exportname', 'lazada_dongmay', 'lazada_mahinh'];
 
     public function user()
     {
