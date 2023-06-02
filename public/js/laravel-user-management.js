@@ -133,7 +133,7 @@
                             targets: 4,
                             render: function render(data, type, full, meta) {
                                 var role = full['role'];
-                                var roleName = role === 0 ? '<span class="text-danger">Admin</span>' : '<span class="text-success">Người dùng</span>';
+                                var roleName = role == "0" ? '<span class="text-danger">Admin</span>' : '<span class="text-success">Người dùng</span>';
                                 return roleName;
                             }
                         },
