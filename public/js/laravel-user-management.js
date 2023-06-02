@@ -487,13 +487,6 @@
                             }
                         }
                     },
-                    password: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Vui lòng nhập mật khẩu'
-                            }
-                        }
-                    },
                     lansudung: {
                         validators: {
                             notEmpty: {
@@ -536,8 +529,8 @@
                         // sweetalert
                         Swal.fire({
                             icon: 'success',
-                            title: 'Thành công '.concat(status, '!'),
-                            text: 'Người dùng được  '.concat(status, ' thành công.'),
+                            title: ''.concat(status, '!'),
+                            text: 'Người dùng được  '.concat(status),
                             customClass: {
                                 confirmButton: 'btn btn-success'
                             }

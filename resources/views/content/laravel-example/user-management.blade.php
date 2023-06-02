@@ -149,7 +149,7 @@
                         <input type="text" id="lansudung" class="form-control" name="lansudung" />
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="add-user-email">Mật khẩu</label>
+                        <label class="form-label" for="add-user-password">Mật khẩu</label>
                         <input type="password" id="add-user-password" class="form-control" name="password" />
                     </div>
                     <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Xác nhận</button>

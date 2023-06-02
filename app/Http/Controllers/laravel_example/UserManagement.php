@@ -139,13 +139,19 @@ class UserManagement extends Controller
 
         if ($userID) {
             // update the value
-            $users = User::updateOrCreate(['id' => $userID], ['name' => $request->name, 'email' => $request->email, 'lansudung' => $request->lansudung, 'password' => bcrypt($request->password)]);
+            if ($request->password == null) {
+                $users = User::updateOrCreate(['id' => $userID], ['name' => $request->name, 'email' => $request->email]);
+            } else {
+                $users = User::updateOrCreate(['id' => $userID], ['name' => $request->name, 'email' => $request->email, 'password' => bcrypt($request->password)]);
+            }
+            $info = Infos::where('user_id', $userID)->first();
+            $info->lansudung = $request->lansudung;
+            $info->save();
             // user updated
-            return response()->json('Đã cập nhật');
+            return response()->json('cập nhật thành công!');
         } else {
             // create new one if email is unique
             $userEmail = User::where('email', $request->email)->first();
-
             if (empty($userEmail)) {
                 $users = User::updateOrCreate(
                     ['id' => $userID],
